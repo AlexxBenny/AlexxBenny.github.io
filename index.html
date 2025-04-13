@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Benny | AI & Data Science Specialist</title>
+    <meta name="description" content="Professional portfolio of Alex Benny, AI Developer and Data Science Specialist">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cosmic: {
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                        },
+                        nebula: {
+                            100: '#f0f9ff',
+                            200: '#e0f2fe',
+                            300: '#bae6fd',
+                            400: '#7dd3fc',
+                            500: '#38bdf8',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        space: {
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155',
+                            600: '#475569',
+                        },
+                        light: {
+                            100: '#ffffff',
+                            200: '#f8fafc',
+                            300: '#f1f5f9',
+                            400: '#e2e8f0',
+                            500: '#cbd5e1',
+                            600: '#94a3b8',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .dark body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        
+        .light body {
+            background-color: #f8fafc;
+            color: #334155;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .dark .space-card {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(56, 189, 248, 0.1);
+        }
+        
+        .light .space-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(203, 213, 225, 0.5);
+        }
+        
+        .space-card {
+            transition: all 0.3s ease;
+        }
+        
+        .dark .space-card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.05);
+        }
+        
+        .light .space-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.05);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .section-divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+        }
+        
+        .dark .tech-tag {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+        
+        .light .tech-tag {
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+        
+        .star {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite;
+            opacity: 0;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: var(--opacity); }
+        }
+        
+        .theme-toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .dark .theme-toggle {
+            background: #1e293b;
+            border: 1px solid #334155;
+        }
+        
+        .light .theme-toggle {
+            background: #e2e8f0;
+            border: 1px solid #cbd5e1;
+        }
+        
+        .toggle-thumb {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .dark .toggle-thumb {
+            transform: translateX(20px);
+            background: #38bdf8;
+        }
+        
+        .light .toggle-thumb {
+            transform: translateX(0);
+            background: #6366f1;
+        }
+        
+        .dark .nav-bg {
+            background: rgba(15, 23, 42, 0.9);
+            border-bottom: 1px solid rgba(30, 41, 59, 0.1);
+        }
+        
+        .light .nav-bg {
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(203, 213, 225, 0.5);
+        }
+        
+        .dark .footer-bg {
+            background: #0f172a;
+            border-top: 1px solid rgba(30, 41, 59, 0.3);
+        }
+        
+        .light .footer-bg {
+            background: #f8fafc;
+            border-top: 1px solid rgba(203, 213, 225, 0.5);
+        }
+        
+        .dark .contact-input {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #e2e8f0;
+        }
+        
+        .light .contact-input {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+        }
+        
+        .dark .contact-input:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 1px #38bdf8;
+        }
+        
+        .light .contact-input:focus {
+            outline: none;
+            border-color: #818cf8;
+            box-shadow: 0 0 0 1px #818cf8;
+        }
+        
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+        
+        .project-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.7));
+        }
+        
+        .light .project-image::after {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.7));
+        }
+        
+        .project-title {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 2;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .skill-meter {
+            height: 4px;
+            border-radius: 2px;
+            overflow: hidden;
+            background: rgba(203, 213, 225, 0.2);
+        }
+        
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            border-radius: 2px;
+        }
+
+        /* Improved dark mode contrast */
+        .dark {
+            --text-primary: #f8fafc;  /* Bright white for primary text */
+            --text-secondary: #e2e8f0; /* Slightly dimmer for secondary */
+            --bg-primary: #0f172a;    /* Dark blue background */
+            --bg-secondary: #1e293b;  /* Slightly lighter cards */
+        }
+
+        .dark body {
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+        }
+
+        .dark .space-card {
+            background: var(--bg-secondary);
+            border-color: rgba(56, 189, 248, 0.2);
+        }
+
+        .dark .project-image::after {
+            background: linear-gradient(to bottom, 
+                rgba(15, 23, 42, 0.1), 
+                rgba(15, 23, 42, 0.9)); /* Stronger overlay */
+        }
+
+        .dark .tech-tag {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: rgba(56, 189, 248, 0.3);
+            color: #7dd3fc; /* Brighter text */
+        }
+
+        .dark .nav-bg {
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+        }
+
+        .dark .footer-bg {
+            background: #0f172a;
+            border-top: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .dark .contact-input {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #e2e8f0;
+        }
+
+        .dark .contact-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .dark .skill-meter {
+            background: rgba(30, 41, 59, 0.8);
+        }
+
+        .dark .skill-level {
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            box-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen font-sans dark">
+    <!-- Starfield Background -->
+    <div id="starfield" class="fixed inset-0 -z-10"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full nav-bg backdrop-blur-md z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <a href="#" class="text-2xl font-bold dark:text-white light:text-space-900">Alex Benny</a>
+            </div>
+            
+            <div class="flex items-center space-x-6">
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="nav-link dark:text-nebula-200 light:text-space-600 hover:dark:text-white hover:light:text-space-900 transition text-sm font-medium">About</a>
+                    <a href="#skills" class="nav-link dark:text-nebula-200 light:text-space-600 hover:dark:text-white hover:light:text-space-900 transition text-sm font-medium">Skills</a>
+                    <a href="#projects" class="nav-link dark:text-nebula-200 light:text-space-600 hover:dark:text-white hover:light:text-space-900 transition text-sm font-medium">Projects</a>
+                    <a href="#contact" class="nav-link dark:text-nebula-200 light:text-space-600 hover:dark:text-white hover:light:text-space-900 transition text-sm font-medium">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div id="themeToggle" class="theme-toggle">
+                        <div class="toggle-thumb">
+                            <i class="fas fa-sun text-xs text-white dark:block light:hidden"></i>
+                            <i class="fas fa-moon text-xs text-white dark:hidden light:block"></i>
+                        </div>
+                    </div>
+                    
+                    <button id="mobileMenuButton" class="md:hidden dark:text-nebula-200 light:text-space-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu md:hidden">
+            <div class="px-6 py-4 space-y-4">
+                <a href="#about" class="block dark:text-nebula-200 light:text-space-600 hover:dark:text-white hover:light:text-space-900 transition">About</a>
+                <a href="#skills" class="block dark:text-nebula-200 light:text-space-600 hover:dark:text-white hover:light:text-space-900 transition">Skills</a>
+                <a href="#experience" class="block dark:text-nebula-200 light:text-space-600 hover:dark:text-white hover:light:text-space-900 transition">Experience</a>
+                <a href="#projects" class="block dark:text-nebula-200 light:text-space-600 hover:dark:text-white hover:light:text-space-900 transition">Projects</a>
+                <a href="#contact" class="block dark:text-nebula-200 light:text-space-600 hover:dark:text-white hover:light:text-space-900 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center pt-16 px-6">
+        <div class="max-w-6xl mx-auto text-center" data-aos="fade-up">
+            <div class="mb-8">
+                <div class="inline-block px-4 py-2 dark:bg-nebula-900/20 light:bg-nebula-100 rounded-full border dark:border-nebula-500/20 light:border-nebula-300 dark:text-nebula-300 light:text-nebula-600 text-sm font-mono tracking-wider">
+                    AI & DATA SCIENCE SPECIALIST
+                </div>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                <span class="dark:text-white light:text-space-900">Alex Benny</span>
+            </h1>
+            <p class="text-lg md:text-xl dark:text-nebula-300 light:text-space-600 max-w-2xl mx-auto mb-10">
+                AI Developer | Data Science Explorer | Innovator pushing boundaries at the frontier of technology
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#projects" class="px-6 py-3 bg-gradient-to-r from-nebula-600 to-cosmic-600 rounded-md font-medium hover:opacity-90 transition shadow-md text-white">
+                    View My Work
+                </a>
+                <a href="#contact" class="px-6 py-3 border dark:border-nebula-500/30 light:border-space-300 dark:text-nebula-300 light:text-space-600 rounded-md font-medium hover:dark:bg-nebula-900/20 hover:light:bg-space-100 transition">
+                    Get In Touch
+                </a>
+            </div>
+            
+            <div class="mt-16 flex justify-center">
+                <div class="animate-float">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dark:text-nebula-400 light:text-cosmic-500">
+                        <path d="M19 14L12 21L5 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto" data-aos="fade-up">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 dark:text-white light:text-space-900">
+                    <span class="gradient-text">About</span> <span class="dark:text-white light:text-space-900">Me</span>
+                </h2>
+                <div class="section-divider mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/3 relative" data-aos="fade-right">
+                    <div class="w-64 h-64 md:w-72 md:h-72 bg-space-800 rounded-lg overflow-hidden mx-auto border border-space-700/30">
+                        <!-- Placeholder for profile image -->
+                        <div class="w-54 h-54 md:w-62 md:h-62 bg-space-800 rounded-lg overflow-hidden mx-auto border border-space-700/30">
+                            <img src="images/Alex.jpg" alt="Alex Benny" class="w-full h-full object-cover">
+                        </div>
+                        <div class="w-full h-full bg-gradient-to-br from-space-700 to-space-900 flex items-center justify-center">
+                            <i class="fas fa-user-astronaut text-5xl text-nebula-400"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-2/3 space-y-6" data-aos="fade-left">
+                    <p class="dark:text-nebula-300 light:text-space-600 leading-relaxed">
+                        I'm Alex Benny, a passionate AI and Data Science student driven by curiosity and the desire to solve real-world problems through intelligent, data-driven solutions.
+                    </p>
+                    <p class="dark:text-nebula-300 light:text-space-600 leading-relaxed">
+                        With a strong foundation in statistical analysis and algorithmic development, I specialize in creating intelligent systems that deliver measurable business value. My approach combines technical expertise with strategic thinking to develop solutions that are both innovative and practical.
+                    </p>
+                    <p class="dark:text-nebula-300 light:text-space-600 leading-relaxed">
+                        Beyond technical skills, I bring a problem-solving mindset and the ability to communicate complex concepts to diverse stakeholders. My work has been recognized through awards and successful implementations in both academic and professional contexts.
+                    </p>
+                    
+                    <div class="pt-4">
+                        <div class="flex flex-wrap gap-4">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-map-marker-alt dark:text-nebula-400 light:text-cosmic-500"></i>
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm">Kerala, India</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-graduation-cap dark:text-nebula-400 light:text-cosmic-500"></i>
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm">B.Tech in AI & Data Science</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-briefcase dark:text-nebula-400 light:text-cosmic-500"></i>
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm">Open to Opportunities</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6 dark:bg-space-800/30 light:bg-light-200">
+        <div class="max-w-6xl mx-auto" data-aos="fade-up">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 dark:text-white light:text-space-900">
+                    Technical Skills
+                </h2>
+                <div class="section-divider mx-auto"></div>
+                <p class="dark:text-nebula-300 light:text-space-600 max-w-2xl mx-auto mt-4 text-sm">
+                    My technical toolkit for building innovative solutions
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-card p-8 rounded-lg" data-aos="fade-up">
+                    <h3 class="text-xl font-semibold mb-6 dark:text-white light:text-space-900">Programming Languages</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm font-medium">Python</span>
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm">90%</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-level" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm font-medium">R</span>
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm">75%</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-level" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm font-medium">JavaScript</span>
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm">80%</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-level" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm font-medium">SQL</span>
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm">85%</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-card p-8 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl font-semibold mb-6 dark:text-white light:text-space-900">Technologies & Frameworks</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm font-medium">TensorFlow/PyTorch</span>
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm">88%</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-level" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm font-medium">Scikit-learn</span>
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm">92%</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-level" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm font-medium">OpenCV</span>
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm">85%</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm font-medium">Pandas/Numpy</span>
+                                <span class="dark:text-nebula-300 light:text-space-600 text-sm">95%</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-level" style="width: 95%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="tech-tag px-4 py-2 rounded-md text-center dark:text-nebula-300 light:text-space-600 text-sm">Machine Learning</div>
+                <div class="tech-tag px-4 py-2 rounded-md text-center dark:text-nebula-300 light:text-space-600 text-sm">Deep Learning</div>
+                <div class="tech-tag px-4 py-2 rounded-md text-center dark:text-nebula-300 light:text-space-600 text-sm">Computer Vision</div>
+                <div class="tech-tag px-4 py-2 rounded-md text-center dark:text-nebula-300 light:text-space-600 text-sm">Natural Language Processing</div>
+                <div class="tech-tag px-4 py-2 rounded-md text-center dark:text-nebula-300 light:text-space-600 text-sm">Data Visualization</div>
+                <div class="tech-tag px-4 py-2 rounded-md text-center dark:text-nebula-300 light:text-space-600 text-sm">Big Data Analytics</div>
+                <div class="tech-tag px-4 py-2 rounded-md text-center dark:text-nebula-300 light:text-space-600 text-sm">Cloud Computing</div>
+                <div class="tech-tag px-4 py-2 rounded-md text-center dark:text-nebula-300 light:text-space-600 text-sm">IoT Systems</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6 dark:bg-space-800/30 light:bg-light-200">
+        <div class="max-w-6xl mx-auto" data-aos="fade-up">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 dark:text-white light:text-space-900">
+                    Featured Projects
+                </h2>
+                <div class="section-divider mx-auto"></div>
+                <p class="dark:text-nebula-300 light:text-space-600 max-w-2xl mx-auto mt-4 text-sm">
+                    A showcase of my most impactful technical implementations
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Smart Glasses Project -->
+                <div class="space-card rounded-lg overflow-hidden" data-aos="fade-up">
+                    <div class="project-image" style="background-image: url('https://t3.ftcdn.net/jpg/07/70/03/88/360_F_770038845_KnrTr1ZPz3tJ72Tf3jfwGSWswP0aQXf0.jpg')">
+                        <h3 class="project-title">Smart Glasses for Visually Impaired</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="inline-block px-3 py-1 dark:bg-nebula-900/20 light:bg-nebula-100 dark:text-nebula-300 light:text-nebula-600 rounded-full text-xs mb-4">
+                            AI / Computer Vision
+                        </div>
+                        <p class="dark:text-nebula-300 light:text-space-600 text-sm mb-4">
+                            Developed an assistive technology system integrating real-time object detection, text-to-speech, and face recognition to aid visually impaired individuals in navigation and environmental awareness.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag px-2 py-1 rounded text-xs dark:text-nebula-300 light:text-space-600">Python</span>
+                            <span class="tech-tag px-2 py-1 rounded text-xs dark:text-nebula-300 light:text-space-600">TensorFlow</span>
+                            <span class="tech-tag px-2 py-1 rounded text-xs dark:text-nebula-300 light:text-space-600">OpenCV</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="inline-flex items-center dark:text-nebula-400 light:text-cosmic-500 hover:dark:text-nebula-300 hover:light:text-space-700 text-sm transition">
+                                View Project <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                            <a href="#" class="text-sm dark:text-nebula-300 light:text-space-600 hover:dark:text-nebula-400 hover:light:text-cosmic-500">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Smart-Acad Project (Now with 1st Place badge) -->
+                <div class="space-card rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                        <h3 class="project-title">Smart-Acad Education Platform</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="inline-block px-3 py-1 bg-yellow-500/20 text-yellow-600 dark:text-yellow-300 rounded-full text-xs">
+                                🥇 1st Place (ICTAK Techathlon)
+                            </span>
+                            <span class="inline-block px-3 py-1 dark:bg-nebula-900/20 light:bg-nebula-100 dark:text-nebula-300 light:text-nebula-600 rounded-full text-xs">
+                                AI / Education
+                            </span>
+                        </div>
+                        <p class="dark:text-nebula-300 light:text-space-600 text-sm mb-4">
+                            Created an AI-powered educational ecosystem featuring automated assessment generation, student performance analytics, and administrative automation through intelligent chatbots.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag px-2 py-1 rounded text-xs dark:text-nebula-300 light:text-space-600">Python</span>
+                            <span class="tech-tag px-2 py-1 rounded text-xs dark:text-nebula-300 light:text-space-600">NLP</span>
+                            <span class="tech-tag px-2 py-1 rounded text-xs dark:text-nebula-300 light:text-space-600">Flask</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="inline-flex items-center dark:text-nebula-400 light:text-cosmic-500 hover:dark:text-nebula-300 hover:light:text-space-700 text-sm transition">
+                                View Project <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                            <a href="#" class="text-sm dark:text-nebula-300 light:text-space-600 hover:dark:text-nebula-400 hover:light:text-cosmic-500">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CuraBot Project (Properly integrated in grid) -->
+                <div class="space-card rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-image" 
+                        style="background-image: url('https://img.freepik.com/free-vector/medical-assistant-robot-concept_23-2148520389.jpg');
+                                background-size: contain;  /* Ensures full image fits */
+                                background-position: center; 
+                                background-repeat: no-repeat;
+                                background-color: #f5f7fa;  /* Light gray backdrop (adjust for dark mode) */">
+                        <h3 class="project-title">CuraBot - AI Healthcare Assistant</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="inline-block px-3 py-1 bg-yellow-500/20 text-yellow-600 dark:text-yellow-300 rounded-full text-xs">
+                                🏆 3rd Place (Gen AI Hackathon)
+                            </span>
+                            <span class="inline-block px-3 py-1 dark:bg-nebula-900/20 light:bg-nebula-100 dark:text-nebula-300 light:text-nebula-600 rounded-full text-xs">
+                                AI / Healthcare
+                            </span>
+                        </div>
+                        <p class="dark:text-nebula-300 light:text-space-600 text-sm mb-4">
+                            An AI-powered healthcare assistant providing symptom analysis and preliminary diagnosis. Won 3rd place in a national 24-hour hackathon organized by amFOSS.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag px-2 py-1 rounded text-xs dark:text-nebula-300 light:text-space-600">Python</span>
+                            <span class="tech-tag px-2 py-1 rounded text-xs dark:text-nebula-300 light:text-space-600">LLMs</span>
+                            <span class="tech-tag px-2 py-1 rounded text-xs dark:text-nebula-300 light:text-space-600">NLP</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="https://devpost.com/software/curabot-your-ai-powered-smart-healthcare-assistant" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center dark:text-nebula-400 light:text-cosmic-500 hover:dark:text-nebula-300 hover:light:text-space-700 text-sm transition">
+                                View Project <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                            <a href="#" class="text-sm dark:text-nebula-300 light:text-space-600 hover:dark:text-nebula-400 hover:light:text-cosmic-500">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- IoT Project -->
+                <div class="space-card rounded-lg overflow-hidden" data-aos="fade-up">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                        <h3 class="project-title">IoT Smart Lighting System</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="inline-block px-3 py-1 dark:bg-nebula-900/20 light:bg-nebula-100 dark:text-nebula-300 light:text-nebula-600 rounded-full text-xs mb-4">
+                            IoT / Hardware
+                        </div>
+                        <p class="dark:text-nebula-300 light:text-space-600 text-sm mb-4">
+                            Designed and implemented a WiFi-enabled smart lighting solution with mobile app control, developed for institutional ceremonial use with Arduino-based hardware integration.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag px-2 py-1 rounded text-xs dark:text-nebula-300 light:text-space-600">Arduino</span>
+                            <span class="tech-tag px-2 py-1 rounded text-xs dark:text-nebula-300 light:text-space-600">Python</span>
+                            <span class="tech-tag px-2 py-1 rounded text-xs dark:text-nebula-300 light:text-space-600">IoT</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="inline-flex items-center dark:text-nebula-400 light:text-cosmic-500 hover:dark:text-nebula-300 hover:light:text-space-700 text-sm transition">
+                                View Project <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                            <a href="#" class="text-sm dark:text-nebula-300 light:text-space-600 hover:dark:text-nebula-400 hover:light:text-cosmic-500">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center px-6 py-3 border dark:border-nebula-500/30 light:border-space-300 dark:text-nebula-300 light:text-space-600 rounded-md font-medium hover:dark:bg-nebula-900/20 hover:light:bg-space-100 transition">
+                    View All Projects <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+        
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto" data-aos="fade-up">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 dark:text-white light:text-space-900">
+                    Awards & Achievements
+                </h2>
+                <div class="section-divider mx-auto"></div>
+                <p class="dark:text-nebula-300 light:text-space-600 max-w-2xl mx-auto mt-4 text-sm">
+                    Recognition for my technical contributions and innovations
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="space-card p-6 rounded-lg" data-aos="fade-up">
+                    <div class="flex items-start">
+                        <div class="dark:text-nebula-400 light:text-cosmic-500 mr-4 mt-1 text-xl">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-1 dark:text-white light:text-space-900">1st Place - ICTAK Techathlon 2024-25</h3>
+                            <p class="dark:text-nebula-300 light:text-space-600 text-sm mb-2">
+                                Recognized for developing an innovative AI solution in a competitive environment hosted by ICT Academy of Kerala.
+                            </p>
+                            <span class="inline-block px-2 py-1 dark:bg-nebula-900/20 light:bg-nebula-100 dark:text-nebula-300 light:text-nebula-600 rounded text-xs">Hackathon</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-card p-6 rounded-lg hover:dark:bg-space-800/50 hover:light:bg-space-100 transition-colors duration-200" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-start">
+                        <div class="dark:text-nebula-400 light:text-cosmic-500 mr-4 mt-1 text-xl">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-1 dark:text-white light:text-space-900">3rd Place - Gen AI Hackathon 2024</h3>
+                            <p class="dark:text-nebula-300 light:text-space-600 text-sm mb-2">
+                                Awarded for demonstrating exceptional AI expertise in a 24-hour national-level hackathon organized by amFOSS.
+                            </p>
+                            <div class="flex gap-2">
+                                <span class="inline-block px-2 py-1 dark:bg-nebula-900/20 light:bg-nebula-100 dark:text-nebula-300 light:text-nebula-600 rounded text-xs hover:dark:bg-nebula-800/30 hover:light:bg-nebula-200 transition-colors duration-200">Hackathon</span>
+                                <a href="https://devpost.com/software/curabot-your-ai-powered-smart-healthcare-assistant" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-2 py-1 dark:bg-space-800 light:bg-space-200 dark:text-nebula-300 light:text-space-600 rounded text-xs hover:dark:bg-space-700 hover:light:bg-space-300 hover:underline transition-colors duration-200">
+                                    View Project
+                                    <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-card p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-start">
+                        <div class="dark:text-nebula-400 light:text-cosmic-500 mr-4 mt-1 text-xl">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-1 dark:text-white light:text-space-900">Top 5 Projects - College Tech Expo 2024</h3>
+                            <p class="dark:text-nebula-300 light:text-space-600 text-sm mb-2">
+                                Recognized for innovative IoT-based projects and robotic designs at the annual college technology exhibition.
+                            </p>
+                            <span class="inline-block px-2 py-1 dark:bg-nebula-900/20 light:bg-nebula-100 dark:text-nebula-300 light:text-nebula-600 rounded text-xs">Innovation Award</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto" data-aos="fade-up">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 dark:text-white light:text-space-900">
+                    Get In Touch
+                </h2>
+                <div class="section-divider mx-auto"></div>
+                <p class="dark:text-nebula-300 light:text-space-600 max-w-2xl mx-auto mt-4 text-sm">
+                    Interested in discussing potential collaborations or opportunities? Feel free to reach out!
+                </p>
+            </div>
+            
+            <div class="space-card p-8 rounded-lg">
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block dark:text-nebula-300 light:text-space-600 mb-2 text-sm">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 contact-input rounded-md focus:outline-none text-sm">
+                        </div>
+                        <div>
+                            <label for="email" class="block dark:text-nebula-300 light:text-space-600 mb-2 text-sm">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 contact-input rounded-md focus:outline-none text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="subject" class="block dark:text-nebula-300 light:text-space-600 mb-2 text-sm">Subject</label>
+                        <input type="text" id="subject" class="w-full px-4 py-3 contact-input rounded-md focus:outline-none text-sm">
+                    </div>
+                    <div>
+                        <label for="message" class="block dark:text-nebula-300 light:text-space-600 mb-2 text-sm">Message</label>
+                        <textarea id="message" rows="5" class="w-full px-4 py-3 contact-input rounded-md focus:outline-none text-sm"></textarea>
+                    </div>
+                    <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-nebula-600 to-cosmic-600 rounded-md font-medium hover:opacity-90 transition text-sm text-white">
+                        Send Message
+                    </button>
+                </form>
+                
+                <div class="mt-16">
+                    <h3 class="text-lg font-semibold mb-6 dark:text-nebula-300 light:text-space-600 text-center">Connect With Me</h3>
+                    <div class="flex justify-center space-x-6">
+                        <a href="https://www.linkedin.com/in/alexx-benny/" class="w-10 h-10 flex items-center justify-center dark:bg-space-700 light:bg-light-300 rounded-md hover:bg-nebula-600 transition dark:text-nebula-300 light:text-space-600 hover:text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/AlexxBenny" class="w-10 h-10 flex items-center justify-center dark:bg-space-700 light:bg-light-300 rounded-md hover:bg-nebula-600 transition dark:text-nebula-300 light:text-space-600 hover:text-white">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-8 pt-8 border-t dark:border-space-700 light:border-light-300 text-center">
+                        <div class="dark:text-nebula-300 light:text-space-600 text-sm mb-2">
+                            <i class="fas fa-phone-alt mr-2"></i> +91 9961498046
+                        </div>
+                        <div class="dark:text-nebula-300 light:text-space-600 text-sm">
+                            <i class="fas fa-envelope mr-2"></i> alexbenny2004@gmail.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-10 px-6 footer-bg">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="#" class="text-xl font-bold dark:text-white light:text-space-900">Alex Benny</a>
+                    <p class="dark:text-nebula-300 light:text-space-600 text-sm mt-2">
+                        AI & Data Science Specialist
+                    </p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#about" class="dark:text-nebula-300 light:text-space-600 hover:dark:text-white hover:light:text-space-900 transition text-sm">About</a>
+                    <a href="#skills" class="dark:text-nebula-300 light:text-space-600 hover:dark:text-white hover:light:text-space-900 transition text-sm">Skills</a>
+                    <a href="#projects" class="dark:text-nebula-300 light:text-space-600 hover:dark:text-white hover:light:text-space-900 transition text-sm">Projects</a>
+                    <a href="#contact" class="dark:text-nebula-300 light:text-space-600 hover:dark:text-white hover:light:text-space-900 transition text-sm">Contact</a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t dark:border-space-700 light:border-light-300 text-center dark:text-nebula-400 light:text-space-500 text-xs">
+                <p>© 2025 Alex Benny. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 w-10 h-10 bg-nebula-600 rounded-md flex items-center justify-center text-white shadow-md hover:bg-nebula-500 transition opacity-0 invisible">
+        <i class="fas fa-arrow-up text-sm"></i>
+    </button>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-in-out'
+        });
+        
+        // Create starfield
+        function createStarfield() {
+            const starfield = document.getElementById('starfield');
+            const starsCount = 100;
+            
+            for (let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random size between 0.5px and 1.5px
+                const size = Math.random() + 0.5;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random position
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Random opacity and animation duration
+                star.style.setProperty('--opacity', Math.random() * 0.8 + 0.2);
+                star.style.setProperty('--duration', `${Math.random() * 3 + 5}s`);
+                
+                // Random delay
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                
+                starfield.appendChild(star);
+            }
+        }
+        
+        // Back to top button
+        function setupBackToTop() {
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.remove('opacity-100', 'visible');
+                    backToTopButton.classList.add('opacity-0', 'invisible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (mobileMenu.classList.contains('open')) {
+                            toggleMobileMenu();
+                        }
+                    }
+                });
+            });
+        }
+        
+        // Theme toggle functionality
+        function setupThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const html = document.documentElement;
+            
+            // Check for saved theme preference or use preferred color scheme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                html.classList.add(savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+                html.classList.add('light');
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                if (html.classList.contains('dark')) {
+                    html.classList.remove('dark');
+                    html.classList.add('light');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    html.classList.remove('light');
+                    html.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        }
+        
+        // Mobile menu functionality
+        function setupMobileMenu() {
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            function toggleMobileMenu() {
+                mobileMenu.classList.toggle('open');
+                const icon = mobileMenuButton.querySelector('i');
+                
+                if (mobileMenu.classList.contains('open')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+            
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        }
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createStarfield();
+            setupBackToTop();
+            setupSmoothScrolling();
+            setupThemeToggle();
+            setupMobileMenu();
+        });
+    </script>
+</body>
+</html>
