@@ -561,27 +561,62 @@
                 </div>
 
                 <!-- Add this as a new project card in your grid -->
+                <!-- Project Card for Wordle: TimeShift Edition -->
                 <div class="space-card rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="150">
-                    <div class="project-image" style="background-image: url('https://i.imgur.com/JKvzW0a.png'); background-size: cover;">
-                        <h3 class="project-title">Wordle: TimeShift Edition</h3>
+                    <!-- CSS-generated game preview -->
+                    <div class="wordle-preview bg-space-900 p-4 flex flex-col items-center justify-center h-48 relative">
+                        <!-- Mini game board -->
+                        <div class="mini-board grid grid-cols-5 gap-1.5 mb-3">
+                            <!-- First row (partially completed) -->
+                            <div class="tile w-5 h-5 bg-gray-600 flex items-center justify-center text-xs font-bold text-white">W</div>
+                            <div class="tile w-5 h-5 bg-yellow-500 flex items-center justify-center text-xs font-bold text-white">E</div>
+                            <div class="tile w-5 h-5 bg-gray-600 flex items-center justify-center text-xs font-bold text-white">A</div>
+                            <div class="tile w-5 h-5 bg-gray-600 flex items-center justify-center text-xs font-bold text-white">R</div>
+                            <div class="tile w-5 h-5 bg-green-500 flex items-center justify-center text-xs font-bold text-white">Y</div>
+                            
+                            <!-- Second row (current guess) -->
+                            <div class="tile w-5 h-5 border-2 border-nebula-400/50 flex items-center justify-center text-xs font-bold text-nebula-200">S</div>
+                            <div class="tile w-5 h-5 border-2 border-nebula-400/50 flex items-center justify-center text-xs font-bold text-nebula-200">H</div>
+                            <div class="tile w-5 h-5 border-2 border-nebula-400/50 flex items-center justify-center text-xs font-bold text-nebula-200">I</div>
+                            <div class="tile w-5 h-5 border-2 border-nebula-400/50"></div>
+                            <div class="tile w-5 h-5 border-2 border-nebula-400/50"></div>
+                        </div>
+                        
+                        <!-- Timer and status -->
+                        <div class="flex items-center gap-3">
+                            <div class="timer px-2 py-1 bg-space-700 rounded text-nebula-300 text-xs font-mono flex items-center">
+                                <span class="w-3 h-3 bg-red-500 rounded-full mr-2 animate-pulse"></span>
+                                0:45
+                            </div>
+                            <div class="text-xs text-nebula-400 flex items-center">
+                                <svg class="w-3 h-3 mr-1 animate-spin" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-dasharray="1, 8"/>
+                                </svg>
+                                Word shifts in 0:15
+                            </div>
+                        </div>
+                        
+                        <!-- Project title overlay -->
+                        <h3 class="project-title absolute bottom-3 left-3 text-nebula-100 text-shadow">Wordle: TimeShift</h3>
                     </div>
+                    
                     <div class="p-6">
                         <div class="inline-block px-3 py-1 bg-nebula-900/20 text-nebula-300 rounded-full text-xs mb-4">
                             Game Development
                         </div>
                         <p class="text-nebula-300 text-sm mb-4">
-                            An innovative Wordle variant where the target word changes every minute, featuring dynamic tile animations, 
-                            time penalties, and real-time feedback. Built with pure JavaScript and CSS animations.
+                            A dynamic Wordle variant where the target word changes every minute, featuring real-time 
+                            feedback animations and strategic time pressure. Built with pure JavaScript.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="tech-tag px-2 py-1 rounded text-xs text-nebula-300">JavaScript</span>
                             <span class="tech-tag px-2 py-1 rounded text-xs text-nebula-300">CSS3</span>
                             <span class="tech-tag px-2 py-1 rounded text-xs text-nebula-300">HTML5</span>
-                            <span class="tech-tag px-2 py-1 rounded text-xs text-nebula-300">Animations</span>
+                            <span class="tech-tag px-2 py-1 rounded text-xs text-nebula-300">Game Design</span>
                         </div>
                         <div class="flex justify-between items-center">
                             <a href="https://alexxbenny.github.io/wordle-game/" target="_blank" class="inline-flex items-center text-nebula-400 hover:text-nebula-300 text-sm transition">
-                                Play Game <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                                Play Demo <i class="fas fa-gamepad ml-2 text-xs"></i>
                             </a>
                             <a href="https://github.com/AlexxBenny/wordle-game" class="text-sm text-nebula-300 hover:text-nebula-400">
                                 <i class="fab fa-github"></i>
