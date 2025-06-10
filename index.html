@@ -1008,15 +1008,20 @@
                     message: document.getElementById('message').value
                 };
 
+                console.log('Sending request to:', `${backendUrl}/contact`);
                 const response = await fetch(`${backendUrl}/contact`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
+                    credentials: 'include',
+                    mode: 'cors',
                     body: JSON.stringify(formData)
                 });
 
+                console.log('Response status:', response.status);
                 const data = await response.json();
+                console.log('Response data:', data);
 
                 if (response.ok) {
                     // Show success message
@@ -1030,11 +1035,11 @@
                     throw new Error(data.error || 'Failed to send message');
                 }
             } catch (error) {
+                console.error('Form submission error:', error);
                 // Show error message
                 formStatus.textContent = error.message || 'Failed to send message. Please try again.';
                 formStatus.className = 'text-red-500 text-sm text-center';
                 formStatus.classList.remove('hidden');
-                console.error('Form submission error:', error);
             } finally {
                 // Reset button state
                 buttonText.textContent = 'Send Message';

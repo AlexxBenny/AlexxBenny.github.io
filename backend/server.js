@@ -8,72 +8,31 @@ const app = express();
 // Middleware
 app.use(express.json());
 
-// CORS configuration
-const corsOptions = {
-    origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin) {
-            console.log('Request with no origin - allowing');
-            return callback(null, true);
-        }
-        
-        // Log the incoming origin for debugging
-        console.log('Incoming request from origin:', origin);
-        
-        // List of allowed origins
-        const allowedOrigins = [
-            'https://alexxbenny.github.io',
-            'https://alexxbenny.github.io/',
-            'http://localhost:5500',
-            'http://127.0.0.1:5500'
-        ];
-        
-        // Add any additional origins from environment variable
-        if (process.env.ALLOWED_ORIGINS) {
-            allowedOrigins.push(...process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim()));
-        }
-        
-        if (allowedOrigins.includes(origin)) {
-            console.log('Origin allowed:', origin);
-            callback(null, true);
-        } else {
-            console.log('Origin blocked:', origin);
-            console.log('Allowed origins:', allowedOrigins);
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    methods: ['POST', 'GET', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-    optionsSuccessStatus: 204,
-    preflightContinue: false
-};
-
-// Apply CORS middleware
-app.use(cors(corsOptions));
-
-// Handle preflight requests explicitly
-app.options('*', (req, res) => {
-    res.header('Access-Control-Allow-Origin', req.headers.origin);
-    res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Max-Age', '86400'); // 24 hours
-    res.sendStatus(204);
-});
-
-// Add error logging middleware
-app.use((err, req, res, next) => {
-    console.error('Server error:', err);
-    // Include CORS headers in error responses
-    if (req.headers.origin) {
-        res.header('Access-Control-Allow-Origin', req.headers.origin);
-        res.header('Access-Control-Allow-Credentials', 'true');
+// Simplified CORS configuration
+app.use((req, res, next) => {
+    const allowedOrigins = [
+        'https://alexxbenny.github.io',
+        'http://localhost:5500',
+        'http://127.0.0.1:5500'
+    ];
+    
+    const origin = req.headers.origin;
+    console.log('Request origin:', origin);
+    
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        res.setHeader('Access-Control-Allow-Credentials', 'true');
     }
-    res.status(500).json({
-        error: 'Internal server error',
-        message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
-    });
+    
+    // Handle preflight
+    if (req.method === 'OPTIONS') {
+        res.setHeader('Access-Control-Max-Age', '86400'); // 24 hours
+        return res.status(204).end();
+    }
+    
+    next();
 });
 
 // Email transporter setup
