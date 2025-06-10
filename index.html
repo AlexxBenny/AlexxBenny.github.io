@@ -990,9 +990,15 @@
             e.preventDefault();
             
             const submitButton = this.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.innerHTML;
-            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            const buttonText = submitButton.querySelector('#buttonText');
+            const loadingSpinner = submitButton.querySelector('#loadingSpinner');
+            const formStatus = document.getElementById('formStatus');
+            
+            // Show loading state
+            buttonText.textContent = 'Sending...';
+            loadingSpinner.classList.remove('hidden');
             submitButton.disabled = true;
+            formStatus.classList.add('hidden');
 
             try {
                 const formData = {
@@ -1014,30 +1020,25 @@
 
                 if (response.ok) {
                     // Show success message
-                    const successAlert = document.createElement('div');
-                    successAlert.className = 'alert alert-success';
-                    successAlert.innerHTML = '<i class="fas fa-check-circle"></i> Message sent successfully!';
-                    this.insertBefore(successAlert, this.firstChild);
+                    formStatus.textContent = 'Message sent successfully!';
+                    formStatus.className = 'text-green-500 text-sm text-center';
+                    formStatus.classList.remove('hidden');
                     
                     // Reset form
                     this.reset();
-                    
-                    // Remove success message after 5 seconds
-                    setTimeout(() => successAlert.remove(), 5000);
                 } else {
-                    throw new Error(data.message || 'Failed to send message');
+                    throw new Error(data.error || 'Failed to send message');
                 }
             } catch (error) {
                 // Show error message
-                const errorAlert = document.createElement('div');
-                errorAlert.className = 'alert alert-danger';
-                errorAlert.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${error.message || 'Failed to send message. Please try again.'}`;
-                this.insertBefore(errorAlert, this.firstChild);
-                
-                // Remove error message after 5 seconds
-                setTimeout(() => errorAlert.remove(), 5000);
+                formStatus.textContent = error.message || 'Failed to send message. Please try again.';
+                formStatus.className = 'text-red-500 text-sm text-center';
+                formStatus.classList.remove('hidden');
+                console.error('Form submission error:', error);
             } finally {
-                submitButton.innerHTML = originalButtonText;
+                // Reset button state
+                buttonText.textContent = 'Send Message';
+                loadingSpinner.classList.add('hidden');
                 submitButton.disabled = false;
             }
         });

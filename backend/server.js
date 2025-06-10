@@ -12,34 +12,54 @@ app.use(express.json());
 const corsOptions = {
     origin: function (origin, callback) {
         // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
+        if (!origin) {
+            console.log('Request with no origin - allowing');
+            return callback(null, true);
+        }
+        
+        // Log the incoming origin for debugging
+        console.log('Incoming request from origin:', origin);
         
         // Allow localhost and 127.0.0.1 origins during development
         if (origin.startsWith('http://localhost:') || 
             origin.startsWith('http://127.0.0.1:') ||
-            origin === 'https://alexxbenny.github.io') {
+            origin === 'https://alexxbenny.github.io' ||
+            origin === 'https://alexxbenny.github.io/') {
+            console.log('Origin allowed:', origin);
             return callback(null, true);
         }
         
         // Check against allowed origins from env
         const allowedOrigins = process.env.ALLOWED_ORIGINS ? 
-            process.env.ALLOWED_ORIGINS.split(',') : [];
+            process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim()) : [];
         
         if (allowedOrigins.includes(origin)) {
+            console.log('Origin allowed from ALLOWED_ORIGINS:', origin);
             callback(null, true);
         } else {
-            console.log('Blocked by CORS:', origin);
+            console.log('Origin blocked:', origin);
+            console.log('Allowed origins:', allowedOrigins);
             callback(new Error('Not allowed by CORS'));
         }
     },
     methods: ['POST', 'GET', 'OPTIONS'],
-    credentials: true
+    credentials: true,
+    optionsSuccessStatus: 200
 };
 
 app.use(cors(corsOptions));
 
 // Add a preflight handler for OPTIONS requests
 app.options('*', cors(corsOptions));
+
+// Add error logging middleware
+app.use((err, req, res, next) => {
+    console.error('Server error:', err);
+    res.status(500).json({
+        error: 'Internal server error',
+        message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+    });
+});
 
 // Email transporter setup
 const transporter = nodemailer.createTransport({
