@@ -41,27 +41,26 @@ app.use(cors(corsOptions));
 // Add a preflight handler for OPTIONS requests
 app.options('*', cors(corsOptions));
 
-// Create email transporter
+// Email transporter setup
 const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: process.env.SMTP_PORT,
-    secure: process.env.SMTP_PORT === '465',
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false, // true for 465, false for other ports
     auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     }
 });
 
-// Validate email configuration
-async function validateEmailConfig() {
-    try {
-        await transporter.verify();
+// Verify email configuration
+transporter.verify(function(error, success) {
+    if (error) {
+        console.log('Email configuration error:', error);
+    } else {
         console.log('Email configuration is valid');
-    } catch (error) {
-        console.error('Email configuration error:', error);
-        process.exit(1);
     }
-}
+});
 
 // Contact form endpoint
 app.post('/contact', async (req, res) => {
@@ -130,5 +129,5 @@ app.get('/health', (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, async () => {
     console.log(`Server running on port ${PORT}`);
-    await validateEmailConfig();
+    await transporter.verify();
 }); 
