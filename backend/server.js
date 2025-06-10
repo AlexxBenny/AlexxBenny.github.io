@@ -20,21 +20,21 @@ const corsOptions = {
         // Log the incoming origin for debugging
         console.log('Incoming request from origin:', origin);
         
-        // Allow localhost and 127.0.0.1 origins during development
-        if (origin.startsWith('http://localhost:') || 
-            origin.startsWith('http://127.0.0.1:') ||
-            origin === 'https://alexxbenny.github.io' ||
-            origin === 'https://alexxbenny.github.io/') {
-            console.log('Origin allowed:', origin);
-            return callback(null, true);
+        // List of allowed origins
+        const allowedOrigins = [
+            'https://alexxbenny.github.io',
+            'https://alexxbenny.github.io/',
+            'http://localhost:5500',
+            'http://127.0.0.1:5500'
+        ];
+        
+        // Add any additional origins from environment variable
+        if (process.env.ALLOWED_ORIGINS) {
+            allowedOrigins.push(...process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim()));
         }
         
-        // Check against allowed origins from env
-        const allowedOrigins = process.env.ALLOWED_ORIGINS ? 
-            process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim()) : [];
-        
         if (allowedOrigins.includes(origin)) {
-            console.log('Origin allowed from ALLOWED_ORIGINS:', origin);
+            console.log('Origin allowed:', origin);
             callback(null, true);
         } else {
             console.log('Origin blocked:', origin);
@@ -43,18 +43,33 @@ const corsOptions = {
         }
     },
     methods: ['POST', 'GET', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
-    optionsSuccessStatus: 200
+    optionsSuccessStatus: 204,
+    preflightContinue: false
 };
 
+// Apply CORS middleware
 app.use(cors(corsOptions));
 
-// Add a preflight handler for OPTIONS requests
-app.options('*', cors(corsOptions));
+// Handle preflight requests explicitly
+app.options('*', (req, res) => {
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Max-Age', '86400'); // 24 hours
+    res.sendStatus(204);
+});
 
 // Add error logging middleware
 app.use((err, req, res, next) => {
     console.error('Server error:', err);
+    // Include CORS headers in error responses
+    if (req.headers.origin) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        res.header('Access-Control-Allow-Credentials', 'true');
+    }
     res.status(500).json({
         error: 'Internal server error',
         message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
