@@ -8,7 +8,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 
-// Simplified CORS configuration
+// CORS configuration
 app.use((req, res, next) => {
     const allowedOrigins = [
         'https://alexxbenny.github.io',
@@ -17,21 +17,46 @@ app.use((req, res, next) => {
     ];
     
     const origin = req.headers.origin;
+    console.log('Request headers:', req.headers);
     console.log('Request origin:', origin);
+    console.log('Request method:', req.method);
+    console.log('Request path:', req.path);
     
-    if (allowedOrigins.includes(origin)) {
+    // Always allow requests from GitHub Pages
+    if (origin === 'https://alexxbenny.github.io') {
         res.setHeader('Access-Control-Allow-Origin', origin);
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
         res.setHeader('Access-Control-Allow-Credentials', 'true');
+        console.log('Allowed GitHub Pages request');
+    }
+    // Allow requests with no origin (like direct API calls)
+    else if (!origin) {
+        console.log('Request with no origin - allowing');
+        // Don't set CORS headers for requests with no origin
+    }
+    // Allow local development
+    else if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        res.setHeader('Access-Control-Allow-Credentials', 'true');
+        console.log('Allowed local development request');
     }
     
     // Handle preflight
     if (req.method === 'OPTIONS') {
+        console.log('Handling preflight request');
         res.setHeader('Access-Control-Max-Age', '86400'); // 24 hours
         return res.status(204).end();
     }
     
+    next();
+});
+
+// Add request logging middleware
+app.use((req, res, next) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
     next();
 });
 
