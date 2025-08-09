@@ -983,7 +983,7 @@
         // Backend URL configuration
         const backendUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
             ? 'http://localhost:3000'  // Local development
-            : 'https://alex-website-backend-d146iobuibrs73dvup4g.onrender.com';  // Your deployed backend URL
+            : 'https://alexxbenny-github-io.onrender.com';  // Your deployed backend URL
 
         // Contact form submission
         async function handleSubmit(event) {
@@ -1004,6 +1004,7 @@
                 const formData = {
                     name: document.getElementById('name').value,
                     email: document.getElementById('email').value,
+                    subject: document.getElementById('subject').value,
                     message: document.getElementById('message').value
                 };
 
